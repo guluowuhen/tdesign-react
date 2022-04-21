@@ -62,9 +62,9 @@ const TimeRangePicker: FC<TimeRangePickerProps> = (props) => {
 
   const handleTimeChange = (newValue: string) => {
     if (currentPanelIdx === 0) {
-      onChange([newValue, value[1]]);
+      onChange([newValue, value[1] ?? newValue]);
     } else {
-      onChange([value[0], newValue]);
+      onChange([value[0] ?? newValue, newValue]);
     }
   };
 
@@ -81,6 +81,7 @@ const TimeRangePicker: FC<TimeRangePickerProps> = (props) => {
           },
         }}
         rangeInputProps={{
+          size,
           clearable,
           className: inputClasses,
           value: value ?? undefined,
@@ -89,7 +90,6 @@ const TimeRangePicker: FC<TimeRangePickerProps> = (props) => {
           onClear: handleClear,
           onClick: handleClick,
           readonly: !allowInput,
-          size,
         }}
         panel={
           <TimePickerPanel
